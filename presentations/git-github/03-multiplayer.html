@@ -4,22 +4,46 @@
 
 ## Topics
 
-- Commandes (rappel)
-- Branches (organisation)
-- Revues de codes
-- Deploiement
+- GUI
+- Using terminal
+- Branch
+- Code review
+- Deploy
 
 ---
 
-## Utiliser le terminal
+## Graphical User Interface
 
 --
 
-### Configurer git
+### Command line absctraction
+
+[https://git-scm.com/downloads/guis](https://git-scm.com/downloads/guis)
+
+_Hit button instead of typing commands_
+
+--
+
+### GitHub for windows
+
+[https://desktop.github.com/](https://desktop.github.com/)
+
+_The shell is included_
+
+---
+
+## Serious Business
+
+__Using the terminal__
+
+--
+
+### Configure tooling
 
 ```sh
 vim .gitconfig
 ```
+
 ```
 [user]
   name = David Leuliette
@@ -29,21 +53,21 @@ vim .gitconfig
 ```
 --
 
-### Associer git & GitHub
+### Install git & GitHub
 
-Protip: __Toujours__ cloner en `ssh`
+Protip: __Always__ use `ssh`
 
 [http://davidl.fr/git.html](http://davidl.fr/git.html)
 
 --
 
-### Nouveau projet
+### Create repositories
 
 ```sh
-$ git clone XXX
+$ git init project-name
 ```
 ```sh
-$ git init
+$ git clone project-url
 ```
 
 --
@@ -54,27 +78,35 @@ $ git init
 
 --
 
-### Rappel : les bases
+### Make changes
 
-Quand je sais pas
 ```sh
 $ git status
 ```
-
-Lister les branches
 ```sh
-$ git branch
+$ git diff
+```
+```sh
+$ git add [file]
+```
+```sh
+$ git commit -m [message]
 ```
 
-Synchroniser votre travail
+--
+
+### Save fragments
+
 ```sh
-$ git fetch origin master
+$ git stash
+```
+```sh
+$ git stash pop
+```
+```sh
+$ git stash list
 ```
 
-Fusionner les branches
-```sh
-$ git pull origin master
-```
 --
 
 ### Rappel : Sauvegarder
@@ -101,39 +133,30 @@ $ git push origin master
 $ git push origin branch-name
 ```
 
---
-
-### Alias pour les ninjas
-
-```sh
-$ git co -
-$ git merge -
-gss
-```
-
-[Télécharger oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-
 ---
 
-## Organisation des branches
+## Branch
 
 --
 
-Attention au paradoxe temporel
+_Be careful with time paradox_
 
 ![git-time-travel](/assets/images/git/past.jpg)
 
 --
 
-### Nouvelle fonctionnalité
+### Group changes
 
 ```sh
-$ git checkout -b feature/add-commenting
+$ git branch
+```
+```sh
+$ git checkout -b feature/awesome
 ```
 
 --
 
-### Travailler avec plusieurs branches
+### Working with branches
 
 rename branch
 ```sh
@@ -145,30 +168,23 @@ delete branch
 $ git branch -d feature/merged-branch
 ```
 
-récupérer une branche distante
+fetch a remote branch
 ```sh
 $ git checkout -t origin/feature/update-reviews
 ```
 
 --
 
-### Sauvegarde & synchronisation
+### Synchronize changes
 
-#### Mettre à jour le projet
 ```sh
-$ git stash
+$ git fetch
+```
+```sh
 $ git pull --rebase
-$ git stash pop
 ```
-
-#### Sauvegarde
 ```sh
-$ git commit -am 'Update stuff'
-```
-
-#### Partage
-```sh
-$ git push
+$ git push [alias] [branch]
 ```
 
 --
@@ -176,7 +192,7 @@ $ git push
 ### Merge
 
 ```sh
-$ git co develop
+$ git checkout develop
 $ git pull --rebase
 $ git pull --no-ff origin branche
 $ git push
@@ -184,16 +200,16 @@ $ git push
 
 --
 
-### Annuler (presque) tout avec Git
+### Cancel (almost) everything with git
 ```sh
 $ git revert <SHA>
 ```
 
-[Voir la liste complète](https://github.com/blog/2019-how-to-undo-almost-anything-with-git)
+[The complete list](https://github.com/blog/2019-how-to-undo-almost-anything-with-git)
 
 ---
 
-## Revue de code
+## Code review
 
 --
 
@@ -202,6 +218,22 @@ $ git revert <SHA>
 --
 
 ![pull-request-workflow](/assets/images/git/development-workflow.jpg)
+
+--
+
+### Pull-request level 2
+
+--
+
+## Step 1 : qualification
+
+    $ mkdir .github && cd $_
+    $ touch pull_request_template.md
+
+--
+
+### `PULL_REQUEST_TEMPLATE.md`
+
 --
 
 # DEMO TIME
