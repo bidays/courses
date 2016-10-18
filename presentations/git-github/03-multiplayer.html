@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang=fr><head><meta charset=utf-8 /><title>Git & GitHub 101 - Les Bases - David Leuliette</title><meta content="noindex,nofollow" name=robots /><meta content="width=device-width, initial-scale=1.0" name=viewport /><link href="/assets/images/favicon.ico" rel=icon type="image/ico"/><link href="/assets/stylesheets/presentation.css" rel=stylesheet /><link href="http://fonts.googleapis.com/css?family=Lato:400,300,700|Ubuntu+Mono:400,700" rel=stylesheet /></head><body class="presentations presentations_git-github presentations_git-github_03-multiplayer"><div class=reveal><div class=slides><section data-markdown="" data-separator="^---" data-vertical="^--"><script type="text/template"># Workflow
+<!DOCTYPE html><html lang=fr><head><meta charset=utf-8 /><title>Git & GitHub 101 - Multiplayer - David Leuliette</title><meta content="noindex,nofollow" name=robots /><meta content="width=device-width, initial-scale=1.0" name=viewport /><link href="/assets/images/favicon.ico" rel=icon type="image/ico"/><link href="/assets/stylesheets/presentation.css" rel=stylesheet /><link href="http://fonts.googleapis.com/css?family=Lato:400,300,700|Ubuntu+Mono:400,700" rel=stylesheet /></head><body class="presentations presentations_git-github presentations_git-github_03-multiplayer"><div class=reveal><div class=slides><section data-markdown="" data-separator="^---" data-vertical="^--"><script type="text/template"># Multiplayer
 
 ---
 
@@ -8,7 +8,8 @@
 - Using terminal
 - Branch
 - Code review
-- Deploy
+- Workflow
+- Fork
 
 ---
 
@@ -133,16 +134,19 @@ $ git checkout -b feature/awesome
 ### Working with branches
 
 rename branch
+
 ```sh
 $ git branch -m feature/old-branch feature/new-branch
 ```
 
 delete branch
+
 ```sh
 $ git branch -d feature/merged-branch
 ```
 
 fetch a remote branch
+
 ```sh
 $ git checkout -t origin/feature/update-reviews
 ```
@@ -169,7 +173,7 @@ $ git push [alias] [branch]
 $ git checkout develop
 $ git pull --rebase
 $ git merge --no-ff feature/branch
-$ git push
+$ git push [alias] [branch]
 ```
 
 --
@@ -211,6 +215,80 @@ $ git revert <SHA>
 --
 
 # DEMO TIME
+
+--
+
+## Workflow
+
+--
+
+### [git-flow](http://nvie.com/posts/a-successful-git-branching-model/)
+
+![git flow](/assets/images/git/git-flow-branching-model.jpg)
+
+--
+
+### [git-flow](http://nvie.com/posts/a-successful-git-branching-model/)
+
+5 January 2010 — [Vincent Driessen](https://twitter.com/nvie)
+
+- `master` is production with tags
+- `develop` we work from here
+
+<br>
+
+- `feature` from `develop` and merge into `develop`
+- `release` from `develop` and merge into `master` & `develop`
+- `hotfix` from `master` and merge into `master` & `develop` / `release`
+
+--
+
+[git flow extension](https://github.com/nvie/gitflow)
+
+```sh
+$ git flow feature
+$ git flow feature start <name> [<base>]
+$ git flow feature finish <name>
+```
+
+--
+
+### [github-flow](http://scottchacon.com/2011/08/31/github-flow.html)
+
+![github flow](/assets/images/git/github-flow-branching-model.jpg)
+
+--
+
+### [github-flow](http://scottchacon.com/2011/08/31/github-flow.html)
+
+_31 August 2011 — [Scott Chacon](https://twitter.com/chacon)_
+
+1. `master` is production
+1. `feature` branch from `master`
+1. often push on `origin`
+1. open `pull-request` when you want
+1. `merge` only after a pull-request review
+1. __Deploy immediatly__ after the merge on master
+
+--
+
+### [Trunk Based Development](http://paulhammant.com/2013/04/05/what-is-trunk-based-development/) (TBD)
+
+Fast but require more __concentration__ & __rigor__
+
+![trunk based development](/assets/images/git/git-trunk-based-dev.jpg)
+
+---
+
+## Fork
+
+--
+
+### How it works ?
+
+![fork](/assets/images/git/fork.png)
+
+[courses.cecilitse.org](http://courses.cecilitse.org/presentations/#/)
 
 ---
 
